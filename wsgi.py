@@ -1,3 +1,3 @@
-from flask_api import create_app
+from LoLBank import create_app
 
 app = create_app()
