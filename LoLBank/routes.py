@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request
 
 from .extensions import db
-from .forms import ClientForm, AdvisorForm, AccountForm, UpdateClient, DeleteForm, TablesForm
+from .forms import (ClientForm, AdvisorForm, AccountForm, UpdateClient,
+                    DeleteForm, TablesForm)
 # NOTE: Won't work until we finish models.py
 # from .models import addresses, clients, accounts
 # from .models import financial_advisors, clients_accounts, clients_advisors
@@ -9,22 +10,11 @@ from .forms import ClientForm, AdvisorForm, AccountForm, UpdateClient, DeleteFor
 
 main = Blueprint('main', __name__)
 
-# @app.route('/add', methods=['GET', 'POST'])
-# def add_pup():
-#     form = AddForm()
-
-#     if form.validate_on_submit():
-#         name = form.name.data
-
-#         # Add new Puppy to database
-#         new_pup = Puppy(name)
-#         db.session.add(new_pup)
-#         db.session.commit()
-
 
 @main.route('/')
 def index():
     return render_template('index.html')
+
 
 @main.route('/add_client', methods=['GET', 'POST'])
 def add_client():
@@ -39,8 +29,8 @@ def add_client():
         state = form.city.data
         house_number = form.house_number.data
         zip_code = form.zip_code.data
-        email = form.email.data 
-        
+        email = form.email.data
+
     return render_template('add_client.html', form=form)
 
 
@@ -49,14 +39,15 @@ def add_advisor():
 
     form = AdvisorForm()
 
-    if form.validate_on_submit():        
+    if form.validate_on_submit():
         first_name = form.first_name.data
         last_name = form.last_name.data
         area_of_expertise = form.expertise.data
-    
+
     return render_template('add_advisor.html', form=form)
 
-# at least one SELECT utilize a search/filter with a dynamically populated list of properties
+# at least one SELECT utilize a search/filter with a dynamically populated
+# list of properties
 @main.route('/search_database', methods=['GET', 'POST'])
 def search_database():
     return render_template('search_database.html')
@@ -67,10 +58,11 @@ def add_account():
     form = AccountForm()
     if form.validate_on_submit():
         id = form.id.data
-    #else: 
-        # return error message if invalid id entered       
+    # else:
+        # return error message if invalid id entered
 
     return render_template('add_account.html', form=form)
+
 
 @main.route('/update_client',  methods=['GET', 'POST'])
 def update_client():
@@ -78,22 +70,21 @@ def update_client():
     if form.validate_on_submit():
         id = form.id.data
         # return (return client data)
-    #else: 
+    # else:
         # return error message if invalid id entered
 
     return render_template('update_client.html', form=form)
 
+
 @main.route('/delete_client', methods=['GET', 'POST'])
 def delete_client():
     form = DeleteForm()
-    
+
     if form.validate_on_submit():
         id = form.id.data
-        # return (return client data)
-    #else: 
-        # return error message if invalid id entered
-    
+
     return render_template('delete_client.html', form=form)
+
 
 @main.route('/view_tables', methods=['GET', 'POST'])
 def view_tables():
