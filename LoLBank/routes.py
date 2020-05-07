@@ -109,9 +109,8 @@ def view_tables():
 
     if form.validate_on_submit():
         if table_wanted == "clients":
-            print("User wants clients")            
+            print("User wants clients")
             return render_template('client_table.html', form=form)
-
 
         # clients = clients.form.data
         # addresses = form.addresses.data
@@ -120,4 +119,3 @@ def view_tables():
         # clients_advisors = form.clients_advisors.data
         # clients_accounts = form.clients_accounts.data
     return render_template('view_tables.html', form=form)
-
