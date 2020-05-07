@@ -93,7 +93,7 @@ def view_tables():
 
         table_wanted = form.tables.data
 
-        # print(tables_wanted)
+        print(table_wanted)
 
         # clients = clients.form.data
         # addresses = form.addresses.data
