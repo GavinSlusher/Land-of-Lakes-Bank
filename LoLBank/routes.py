@@ -91,7 +91,9 @@ def view_tables():
     form = TablesForm()
     if form.validate_on_submit():
 
-        table = form.tables.data
+        table_wanted = form.tables.data
+
+        # print(tables_wanted)
 
         # clients = clients.form.data
         # addresses = form.addresses.data
