@@ -2,8 +2,7 @@ import click
 from flask.cli import with_appcontext
 
 from .extensions import db
-from .models import addresses, clients, accounts
-from .models import financial_advisors, clients_accounts, clients_advisors
+from .models import clients
 
 
 # NOTE: Won't work until we finish creating database in models.py

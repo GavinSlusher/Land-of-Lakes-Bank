@@ -1,6 +1,6 @@
 from flask import Flask
 
-# from .commands import create_tables
+from .commands import create_tables
 from .extensions import db
 from .routes import main
 
@@ -14,6 +14,6 @@ def create_app(config_file='settings.py'):
 
     app.register_blueprint(main)
 
-    # app.cli.add_command(create_tables)
+    app.cli.add_command(create_tables)
 
     return app
