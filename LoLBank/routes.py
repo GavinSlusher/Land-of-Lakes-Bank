@@ -31,6 +31,8 @@ def add_client():
         zip_code = form.zip_code.data
         email = form.email.data
 
+        print(ssn)
+
     return render_template('add_client.html', form=form)
 
 
