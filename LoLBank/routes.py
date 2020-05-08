@@ -4,7 +4,7 @@ from .extensions import db
 from .forms import (ClientForm, AdvisorForm, AccountForm, UpdateClient,
                     DeleteForm, TablesForm)
 # NOTE: Won't work until we finish models.py
-from .models import clients
+from .models import clients, addresses
 # from .models import addresses, clients, accounts
 # from .models import financial_advisors, clients_accounts, clients_advisors
 
@@ -32,13 +32,27 @@ def add_client():
         zip_code = form.zip_code.data
         email = form.email.data
 
+        new_address= addresses(
+                               city=city,
+                               state=state,
+                               house_number=house_number,
+                               #address_id=address_id,
+                               zip_code=zip_code                               
+        )
+
+        db.session.add(new_address)
+        db.session.commit()
+        #addresses.query.
+
         new_client = clients(
                             ssn=ssn,
                             first_name=first_name,
                             last_name=last_name,
-                            email=email
+                            email=email,
+                            address_id=new_address.address_id
         )
 
+        db.session.add(new_address)
         db.session.add(new_client)
         db.session.commit()
 
@@ -109,8 +123,12 @@ def view_tables():
 
     if form.validate_on_submit():
         if table_wanted == "clients":
-            print("User wants clients")
-            return render_template('client_table.html', form=form)
+            print("User wants clients")            
+            client_table = clients.query.all()
+            for x in client_table:
+                print(x.first_name)
+
+            return render_template('client_table.html', form=form, client_table=client_table)
 
         # clients = clients.form.data
         # addresses = form.addresses.data
