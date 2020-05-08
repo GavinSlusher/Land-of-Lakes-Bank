@@ -27,7 +27,7 @@ def add_client():
         first_name = form.first_name.data
         last_name = form.last_name.data
         city = form.city.data
-        state = form.city.data
+        state = form.state.data
         house_number = form.house_number.data
         zip_code = form.zip_code.data
         email = form.email.data
@@ -40,20 +40,16 @@ def add_client():
                                zip_code=zip_code                               
         )
 
-        db.session.add(new_address)
-        db.session.commit()
-        #addresses.query.
-
         new_client = clients(
                             ssn=ssn,
                             first_name=first_name,
                             last_name=last_name,
                             email=email,
-                            address_id=new_address.address_id
+                            address_id=new_address
         )
 
-        db.session.add(new_address)
         db.session.add(new_client)
+        db.session.add(new_address)
         db.session.commit()
 
         print("Client added to the database")

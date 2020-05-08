@@ -8,18 +8,20 @@ class addresses(db.Model):
     house_number = db.Column(db.Integer)
     zip_code = db.Column(db.Integer)
     client_id = db.Column(db.Integer,
-                          db.ForeignKey('clients.client_id'),
-                          nullable=False)
-
+                          db.ForeignKey('clients.client_id'), nullable=False)
+    #clients = db.relationship('clients', backref=clients)
+    #owner = db.relationship('Owner',backref='puppy',uselist=False)
 
 class clients(db.Model):
     client_id = db.Column(db.Integer, primary_key=True)
     ssn = db.Column(db.Integer, nullable=False)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
-    address_id = db.Column(db.Integer,
-                           db.ForeignKey('addresses.address_id'),
-                           nullable=False)
+    address_id = db.relationship('addresses', backref='clients', uselist=False)
+    # address_id = db.Column(db.Integer,
+    #                        db.ForeignKey('addresses.address_id'),
+    #                        nullable=False)
+    #addresses = db.relationship('addresses', backref='clients', uselist=False)
 
     email = db.Column(db.String(255), nullable=False)
     # client_account_id = db.Column(db.Integer,
