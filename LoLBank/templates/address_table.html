@@ -1,0 +1,28 @@
+{% extends "view_tables.html" %}
+{% block content %}
+
+<h1>Address Table:</h1>
+<table class="table">
+    <tr>
+        <th>Address ID</th>
+        <th>City</th>
+        <th>State</th>
+        <th>House Number</th>
+        <th>Zip Code</th>
+        <th>Client Id</th>
+    </tr>
+
+    {% for address_item in address_table %}
+    <tr>
+        <td>{{address_item.address_id}}</td>
+        <td>{{address_item.city}}</th>
+        <td>{{address_item.state}}</th>
+        <td>{{address_item.house_number}}</td>
+        <td>{{address_item.zip_code}}</th>
+        <td>{{address_item.client_id}}</td>        
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

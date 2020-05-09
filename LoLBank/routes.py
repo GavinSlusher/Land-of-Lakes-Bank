@@ -125,6 +125,15 @@ def view_tables():
                 print(x.first_name)
 
             return render_template('client_table.html', form=form, client_table=client_table)
+    
+    if form.validate_on_submit():
+        if table_wanted == "addresses":
+            print("User wants addresses")            
+            address_table = addresses.query.all()
+            for x in address_table:
+                print(x.state)
+            
+            return render_template('address_table.html', form=form, address_table=address_table)
 
         # clients = clients.form.data
         # addresses = form.addresses.data
